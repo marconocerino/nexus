@@ -23,7 +23,6 @@ def task_assignment(request):
 
 
 @login_required
-@require_http_methods(["GET"])
 def project_tasks(request, project_id):
     # Query the Task model to get all tasks for the given project ID
     tasks = Task.objects.filter(project_id=project_id)
@@ -31,7 +30,13 @@ def project_tasks(request, project_id):
     # Serialize the tasks
     serialized_tasks = [{"task_id": task.task_id, "task_name": task.task_name, "task_description": task.task_description, "time_required": task.time_required, "task_completion": task.task_completion} for task in tasks]
 
+<<<<<<< HEAD
+    # Pass the serialized tasks as context to the template
+    context = {'tasks': serialized_tasks}
+    return render(request, 'calendarPage.html', context)
+=======
     # Return the serialized tasks in the HTTP response
     return JsonResponse(serialized_tasks, safe=False)
     return render(request, 'calendarPage.html', serialized_tasks)
 
+>>>>>>> cbc607f87935083ff21dcc6cc2bff5d01f2fa79b

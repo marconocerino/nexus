@@ -69,8 +69,14 @@
     <h1 class="w-50">Tasks</h1>
 
       <!-- list tasks: query through task and list the ones from today -->
-
+    <ul id="tasksList">
+    {% for task in tasks %}
+        <li>{{ task.task_name }}</li>
+    {% endfor %}
+    </ul>
 
   </section>
+
+  </body>
 
 </html>
