@@ -18,3 +18,4 @@ def project_tasks(request, project_id):
     # Return the serialized tasks in the HTTP response
     return JsonResponse(serialized_tasks, safe=False)
     return render(request, 'calendarPage.html', serialized_tasks)
+
