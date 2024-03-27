@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -20,32 +19,10 @@
   </head>
   <body>
     <header class="d-flex justify-content-around align-items-center p-5 shadow mb-5">
-      <h1>Dashboard</h1>
-      <div class="d-flex align-items-center">
+      <h1>Calendar</h1>
       <form action="" method="get">
         <input class="form-control rounded-5" type="search" placeholder="Search..." aria-label="Search" name="q">
       </form>
-      <ul class="navbar-nav mx-5 text-dark">
-        {% if user.is_authenticated %}
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Welcome, {{ user.username }} <i class="fas fa-user-circle"></i>
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="{% url 'logout' %}">Sign Out <i class="fas fa-sign-out-alt"></i></a></li>
-          </ul>
-        </li>
-        {% else %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'signup' %}">Sign Up <i class="fas fa-user-plus"></i></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'login' %}">Sign In <i class="fas fa-sign-in-alt"></i></a>
-        </li>
-        {% endif %}
-      </ul>
-      
-      </div>
     </header>
     <section class="d-flex justify-content-around align-items-center mb-5">
       <div>
@@ -84,15 +61,16 @@
           <div class="day">Sat</div>
         </div>
         <div class="days">
-          <!-- lets add days using js -->
+
         </div>
       </div>
     </div>
 
     <h1 class="w-50">Tasks</h1>
+
+      <!-- list tasks: query through task and list the ones from today -->
+
+
   </section>
 
-    <!-- SCRIPT -->
-    <script src="{% static 'js/calendar.js' %}"></script>
-  </body>
 </html>

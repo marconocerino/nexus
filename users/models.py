@@ -1,20 +1,43 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.db.models import Count
-from courses.models import Course, Tag
+from django.urls import reverse
 
 
 class CustomUser(AbstractUser):
-    # 'username', 'email', 'first_name', 'last_name', 'password' fields are already part of AbstractUser
+    SEX_CHOICES = [
+        ('M', 'Male'),
+        ('F', 'Female'),
+        ('NB', 'Non-Binary'),
+        ('PNS', 'Preferred Not to Say'),
+    ]
 
-    def recommend_courses(self):
-        # Fetch user's enrolled courses
-        enrolled_courses = Course.objects.filter(students=self)
+    ROLE_CHOICES = [
+        ('EMPLOYEE', 'Employee'),
+        ('MANAGER', 'Manager'),
+    ]
 
-        # Get tags from those courses
-        tags = Tag.objects.filter(courses__in=enrolled_courses).distinct()
+    age = models.PositiveIntegerField(null=True, blank=True)
+    sex = models.CharField(max_length=3, choices=SEX_CHOICES, null=True, blank=True)
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES, null=True, blank=True)
 
-        # Recommend courses that share the same tags and are not already enrolled by the user
-        recommended_courses = Course.objects.filter(tags__in=tags).exclude(students=self).distinct()
+    # Additional fields for hybrid working environment
+    location = models.CharField(max_length=100, null=True, blank=True)
+    department = models.CharField(max_length=100, null=True, blank=True)
+    
+    groups = models.ManyToManyField(
+        'auth.Group',
+        related_name='customuser_groups',
+        blank=True,
+        help_text='The groups this user belongs to.'
+    )
 
-        return recommended_courses
+    user_permissions = models.ManyToManyField(
+        'auth.Permission',
+        related_name='customuser_permissions',
+        blank=True,
+        help_text='Specific permissions for this user.'
+    )
+
+    def get_absolute_url(self):
+        return reverse('nexus:home')
+
