@@ -7,24 +7,96 @@
   <link rel="stylesheet" type="text/css" href="css/style.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <title>Nexus AI</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" crossorigin="anonymous">
+
+  <title>DashBoard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body>
+
   <header class="d-flex justify-content-around align-items-center p-5">
     <h1>Dashboard</h1>
     <form action="" method="get">
       <input class="form-control rounded-5" type="search" placeholder="Search..." aria-label="Search" name="q">
     </form>
   </header>
-  <section class="d-flex justify-content-around align-items-center">
+
+  <section class="d-flex justify-content-around align-items-center mb-5">
     <div>
       <a><span class="border border-dark rounded-circle p-2 mx-2">01</span>Overview</a>
       <a><span class="border border-dark rounded-circle p-2 mx-2">02</span>Task Management</a>
       <a><span class="border border-dark rounded-circle p-2 mx-2">03</span>Collaboration Spaces</a>
     </div>
-    <p id="DayOfTheWeek">Day of the week</p>
+    <p id="DayOfTheWeek" class="border border-dark rounded p-2">Day of the week</p>
   </section>
+
+  <div class="container">
+    <div class="row mx-auto">
+      <div class="mb-2 col-lg-4 col-md-4 col-sm-12">
+        <div class="card bg-white p-5 rounded h-100 shadow" style="min-width:18rem;">
+          <div>
+            <h1 class="fw-bold row card-title mb-4">Summary</h1>
+            <p class="card-text row p-2 rounded" style="background-color: #FBD4F5;">○ Overview</p>
+            <p class="card-text row p-2 rounded" style="background-color: #E5D6FB;">○ Meetings</p>
+            <p class="card-text row p-2 rounded" style="background-color: #D5E4FA;">○ Adv Session</p>
+          </div>
+        </div>
+      </div>
+      <div class="mb-2 col-lg-4 col-md-4 col-sm-12">
+        <div class="card p-5 rounded h-100 shadow" style="min-width:18rem;">
+          <div>
+            <h1 class="fw-bold card-title">Time Management</h1>
+            <canvas id="myPieChart"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="mb-2 col-lg-4 col-md-4 col-sm-12">
+        <div class="card p-3 rounded shadow h-100" style="min-width:18rem; max-height: 100%; overflow: auto;">
+          <div>
+            <h1 class="fw-bold card-title my-4">Tasks</h1>
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Proj1</td>
+                    <td>Desc1</td>
+                    <td>Time1</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Proj2</td>
+                    <td>Desc2</td>
+                    <td>Time2</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Proj3</td>
+                    <td>Desc3</td>
+                    <td>Time3</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script src="js/script.js"></script>
 </body>
 
 </html>
