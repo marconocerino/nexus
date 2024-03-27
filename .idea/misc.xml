@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
+<<<<<<< HEAD
+  <component name="ProjectRootManager" version="2" project-jdk-name="general" project-jdk-type="Python SDK" />
+=======
+=======
   <component name="Black">
     <option name="sdkName" value="lab_standard" />
   </component>
+>>>>>>> c81a98c441a7bd8a6cafa07b2d33592468edfc90
   <component name="ProjectRootManager" version="2" project-jdk-name="lab_standard" project-jdk-type="Python SDK" />
+>>>>>>> 2b0153645b3deba7bea34ea318b655f084efb5b9
 </project>
