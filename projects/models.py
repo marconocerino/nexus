@@ -12,7 +12,7 @@ class Project(models.Model):
     empID = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        related_name='projects'
+        related_name='project_related'  # changed related_name
     )
 
     class Meta:
@@ -29,7 +29,7 @@ class Task(models.Model):
     empID = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        related_name='projects'
+        related_name='task_related'  # changed related_name
     )
     task_description = models.TextField()
     task_name = models.CharField(max_length=100)

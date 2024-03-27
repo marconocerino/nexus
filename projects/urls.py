@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import monthly_tasks
+from .views import project_tasks
 
 urlpatterns = [
-    path('monthly_tasks/<int:course_id>', monthly_tasks, name='monthly_tasks'),
+    path('project_tasks/<int:project_id>', project_tasks, name='project_tasks'),
 ]
