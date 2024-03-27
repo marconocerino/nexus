@@ -1,10 +1,12 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" crossorigin="anonymous">
@@ -25,8 +27,8 @@
 
   <section class="d-flex justify-content-around align-items-center mb-5">
     <div>
-      <a href="index.html" class="text-dark"><span class="border border-dark rounded-circle p-2 mx-2 text-dark">01</span>Overview</a>
-      <a href="pages/calendar.html" class="text-dark"><span class="border border-dark rounded-circle p-2 mx-2 text-dark">02</span>Calendar</a>
+      <a href="{% url 'nexus:home' %}" class="text-dark"><span class="border border-dark rounded-circle p-2 mx-2 text-dark">01</span>Overview</a>
+      <a href="{% url 'nexus:calendar' %}" class="text-dark"><span class="border border-dark rounded-circle p-2 mx-2 text-dark">02</span>Calendar</a>
       <a><span class="border border-dark rounded-circle p-2 mx-2">03</span>Collaboration Spaces</a>
     </div>
     <p id="DayOfTheWeek" class="border border-dark rounded p-2">Day of the week</p>
@@ -122,7 +124,7 @@
 
 
 
-  <script src="js/script.js"></script>
+  <script src="{% static 'js/script.js' %}"></script>
 </body>
 
 </html>
