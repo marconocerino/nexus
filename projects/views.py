@@ -1,14 +1,12 @@
 from django.shortcuts import render
-import os
-from dotenv import load_dotenv, dotenv_values
 from openai import OpenAI
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 from projects.models import Task
 from django.contrib.auth.decorators import login_required
-load_dotenv()
 
-client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+
+client = OpenAI(api_key='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')
 system_prompt = "As the project manager for our software development project, I need assistance in task assignment. Below are the project details, and time constraint. Please provide task assignments for the project requirements.:"
 user_prompt=""
 end_prompt = "Please provide in detail each task assignment for the team member and "
@@ -20,6 +18,8 @@ response = client.chat.completions.create(
             "content": final_prompt
         }],
 )
+def task_assignment(request):
+    return render(request, 'task_assignment.html', {'response': response})
 
 
 @login_required
