@@ -48,6 +48,8 @@
     </div>
   </header>
 
+  {% if user.is_authenticated %}
+
   <section class="d-flex justify-content-around align-items-center mb-5">
     <div>
       <a href="{% url 'nexus:home' %}" class="text-dark"><span class="border border-dark rounded-circle p-2 mx-2 text-dark">01</span>Overview</a>
@@ -79,71 +81,57 @@
       </div>
       <div class="mb-2 col-lg-4 col-md-4 col-sm-12">
         <div class="card p-3 rounded shadow h-100" style="min-width:18rem; max-height: 100%; overflow: auto;">
-          <div>
-            <h1 class="fw-bold card-title my-4">Tasks</h1>
-            <div class="table-responsive">
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Time</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Proj1</td>
-                    <td>Desc1</td>
-                    <td>Time1</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Proj2</td>
-                    <td>Desc2</td>
-                    <td>Time2</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Proj3</td>
-                    <td>Desc3</td>
-                    <td>Time3</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div>
+                <h1 class="fw-bold card-title my-4">Tasks</h1>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for project in projects %}
+                            <tr>
+                                <th scope="row">{{ project.project_id }}</th>
+                                <td>{{ project.name }}</td>
+                                <td>{{ project.description }}</td>
+                                <td>{{ project.project_end_date }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+    </div>    
     </div>
   </div>
   
   <section class="container p-5">
-    <h1 class="mb-5">Tasks Not Completed (2)</h1>
+    <h1 class="mb-5">Tasks Not Completed ({{ projects|length }})</h1>
     <div class="container">
       <div class="row mx-auto">
+        {% for project in projects %}
         <div class="mb-2 col-lg-4 col-md-4 col-sm-12">
           <div class="card bg-white p-5 rounded h-100 shadow" style="min-width:18rem;">
             <div>
-              <h1 class="fw-bold row card-title mb-4">Proj1</h1>
-              <p class="card-text row p-2 rounded">Oct, 21/02 - Nov, 05/03</p>
-              <p class="card-text row p-2 rounded">Description</p>
+              <h1 class="fw-bold row card-title mb-4">{{ project.name }}</h1>
+              <p class="card-text row p-2 rounded">{{ project.project_start_date }} - {{ project.project_end_date }}</p>
+              <p class="card-text row p-2 rounded">{{ project.description }}</p>
             </div>
           </div>
         </div>
-        <div class="mb-2 col-lg-4 col-md-4 col-sm-12">
-          <div class="card bg-white p-5 rounded h-100 shadow" style="min-width:18rem;">
-            <div>
-              <h1 class="fw-bold row card-title mb-4">Proj2</h1>
-              <p class="card-text row p-2 rounded">Oct, 21/02 - Nov, 05/03</p>
-              <p class="card-text row p-2 rounded">Description</p>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
     </div>
   </section>
+  {% else %}
+  <h1>Log in to view your employee dashboard</h1>
+  {% endif %}
 
 
 

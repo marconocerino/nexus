@@ -12,7 +12,7 @@ class Project(models.Model):
     empID = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        related_name='project_related'  # changed related_name
+        related_name='project_related'
     )
 
     class Meta:
@@ -20,7 +20,8 @@ class Project(models.Model):
         ordering = ['project_id']
 
     def __str__(self):
-        return self.project_id
+        return str(self.project_id)
+
 
 
 class Task(models.Model):

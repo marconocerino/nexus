@@ -1,11 +1,11 @@
 from django.urls import path
 from . import views
-from .views import HomePageView, CalendarView
+from .views import HomePageView, CalendarView, projects_view, another_view
 
 app_name = 'nexus'
 
 urlpatterns = [
-  path('', HomePageView.as_view(), name='home'),
-  path('calendar/', CalendarView.as_view(), name='calendar'),
+  path('calendar/', another_view, name="calendar"),
+  path('', projects_view, name="home"),
 ]
 
