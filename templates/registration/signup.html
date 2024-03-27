@@ -1,0 +1,73 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" crossorigin="anonymous">
+
+  <title>Document</title>
+</head>
+<body>
+  <header class="d-flex justify-content-around align-items-center p-5 shadow mb-5">
+    <h1>Dashboard</h1>
+    <div class="d-flex">
+    <form action="" method="get">
+      <input class="form-control rounded-5" type="search" placeholder="Search..." aria-label="Search" name="q">
+    </form>
+    <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-
+      expanded="false">
+      <i class="fas fa-user"></i>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+      {% if user.is_authenticated %}
+      <li class="dropdown-item" style="color: #232F3E !important;">
+        Hi, {{ user.username }} <i class="fas fa-user-circle"></i></a>
+      <li>
+        <a class="dropdown-item" href="{% url 'logout' %}" style="color: #232F3E !important;">Sign Out <i class="fas fa-sign-out-alt"></i></a>
+      </li>
+      {% else %}
+      <li>
+        <a class="dropdown-item" href="{% url 'signup' %}" style="color: #232F3E !important;">Sign Up <i class="fas fa-user-plus"></i></a>
+      </li>
+      <li>
+        <a class="dropdown-item" href="{% url 'login' %}" style="color: #232F3E !important;">Sign In <i class="fas fa-sign-in-alt"></i></a>
+      </li>
+      {% endif %}
+    </div>
+  </header>
+
+  <section class="d-flex justify-content-around align-items-center mb-5">
+    <div>
+      <a href="{% url 'nexus:home' %}" class="text-dark"><span class="border border-dark rounded-circle p-2 mx-2 text-dark">01</span>Overview</a>
+      <a href="{% url 'nexus:calendar' %}" class="text-dark"><span class="border border-dark rounded-circle p-2 mx-2 text-dark">02</span>Calendar</a>
+      <a><span class="border border-dark rounded-circle p-2 mx-2">03</span>Collaboration Spaces</a>
+    </div>
+    <p id="DayOfTheWeek" class="border border-dark rounded p-2">Day of the week</p>
+  </section>
+  <div>
+    {% if not form.is_valid %}
+    <div class="p-5 d-flex align-items-start justify-content-around flex-wrap">
+      <div>
+        <h1 class="text-green">Sign Up</h1>
+        <form method="post" class="text-dark">
+          <p class="text-dark">{{ form | crispy }}</p>
+          {% csrf_token %}
+          <button type="submit" class="btn btn-outline-dark">
+            Create Account
+          </button>
+        </form>
+        <br />
+      </div>
+    </div>
+    {% endif %}
+  </div>
+  <br />
+  <script src="{% static 'js/script.js' %}"></script>
+
+</body>
+</html>

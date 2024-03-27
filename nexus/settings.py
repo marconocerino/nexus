@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     "projects",
     "users",
     "base",
-
+    'crispy_forms',
+    'crispy_bootstrap5',  # Forgetting this was probably your erro
 ]
 
 MIDDLEWARE = [
@@ -58,7 +59,7 @@ ROOT_URLCONF = "nexus.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        'DIRS': [BASE_DIR.joinpath('templates')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -132,3 +133,7 @@ STATICFILES_FINDERS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+LOGIN_REDIRECT_URL = 'nexus:home'
+LOGOUT_REDIRECT_URL = 'nexus:home'
+AUTH_USER_MODEL = 'users.CustomUser'
