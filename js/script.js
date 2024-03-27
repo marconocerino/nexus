@@ -31,4 +31,3 @@ var myPieChart = new Chart(
   document.getElementById('myPieChart'),
   config
 );
-
